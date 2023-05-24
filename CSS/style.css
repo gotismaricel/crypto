@@ -1,0 +1,54 @@
+/* CSS code */
+html, body {
+  height: 100%;
+  margin: 0;
+ }
+ 
+ body {
+  background-image: url('cipher.jpg');
+  background-repeat: no-repeat;
+  background-size: 1310px 690px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333; /* dark grey text */
+ }
+
+ textarea {
+  width: 150px;
+  height: 80px;
+   
+ }
+
+ button {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#container {
+  position: relative;
+}
+
+#title {
+  position: absolute;
+  top: 15px
+  ;
+}
+
+ 
+   
+ 
+
+ 
+ 
+   
+ 
+ 
+
+ 
+
+

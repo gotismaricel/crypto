@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" href="CSS/style.css">
+ <title>Cipher Encryption/Decryption</title>
+</head>
+<body>
+    <h1 id="title">CryptoCoder</h1>
+ <div id='container'>
+    
+ <label>
+ <textarea type='text' id='plainInput-1' placeholder='type in plain text'></textarea>
+ </label>
+ <button onclick='encryptText()'>Encrypt</button>
+ <button onclick='decryptText()'>Decrypt</button>
+ <button onclick='downloadText()'>Download</button>
+ <input type='number' id='shiftInput' min='0' max='25'>
+ <br>
+ <label>
+ <textarea type='text' id='encryptedInput-1' placeholder="Encrypted/Decrypted text will appear here..."></textarea>
+ </label>
+ </div>
+
+ <!-- JavaScript code -->
+ <script>
+ // Encryption function
+ function encryptText() {
+ var plainText = document.getElementById('plainInput-1').value;
+ var shift = parseInt(document.getElementById('shiftInput').value);
+ var encryptedText = "";
+
+ for (var i = 0; i < plainText.length; i++) {
+ var char = plainText[i];
+
+ // Encrypt uppercase letters
+ if (char.match(/[A-Z]/)) {
+ var charCode = ((char.charCodeAt() - 65 + shift) % 26) + 65;
+ char = String.fromCharCode(charCode);
+ }
+
+ // Encrypt lowercase letters
+ if (char.match(/[a-z]/)) {
+ var charCode = ((char.charCodeAt() - 97 + shift) % 26) + 97;
+ char = String.fromCharCode(charCode);
+ }
+
+ encryptedText += char;
+ }
+
+ document.getElementById('encryptedInput-1').value = encryptedText;
+ }
+
+ // Decryption function
+ function decryptText() {
+ var encryptedText = document.getElementById('encryptedInput-1').value;
+ var shift = parseInt(document.getElementById('shiftInput').value);
+ var decryptedText = "";
+
+ for (var i = 0; i < encryptedText.length; i++) {
+ var char = encryptedText[i];
+
+ // Decrypt uppercase letters
+ if (char.match(/[A-Z]/)) {
+ var charCode = ((char.charCodeAt() - 65 - shift + 26) % 26) + 65;
+ char = String.fromCharCode(charCode);
+ }
+
+ // Decrypt lowercase letters
+ if (char.match(/[a-z]/)) {
+ var charCode = ((char.charCodeAt() - 97 - shift + 26) % 26) + 97;
+ char = String.fromCharCode(charCode);
+ }
+
+ decryptedText += char;
+ }
+
+ document.getElementById('plainInput-1').value = decryptedText;
+ }
+
+ // Download function
+ function downloadText() {
+ var textToDownload = document.getElementById('encryptedInput-1').value;
+ var element = document.createElement('a');
+ element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textToDownload));
+ element.setAttribute('download', 'encrypted_text.txt');
+ element.style.display = 'none';
+ document.body.appendChild(element);
+ element.click();
+ document.body.removeChild(element);
+ }
+ </script>
+</body>
+</html>
